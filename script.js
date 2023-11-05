@@ -5,15 +5,18 @@ async function getWeatherObj(city) {
     return await response.json();
 }
 
-async function x() {
+async function updateDateTime(time) {
+    document.querySelector('.timedate').textContent = new Date(time);
+}
+
+async function x(chosenCity='new york') {
     const cityDiv = document.querySelector('.city')
-    const timeDateDiv = document.querySelector('.timedate')
     const feelsLikeDiv = document.querySelector('.feels-like-text');
     const conditionDiv = document.querySelector('.condition-text');
     const tempDiv = document.querySelector('.temp');
     const img = document.querySelector('img');
 
-    const wetherDataObj = await getWeatherObj('new york');
+    const wetherDataObj = await getWeatherObj(chosenCity);
     const city = wetherDataObj.location.name;
     const condition = wetherDataObj.current.condition.text;
     const conditionIcon = wetherDataObj.current.condition.icon;
@@ -22,9 +25,10 @@ async function x() {
     const UV = wetherDataObj.current.uv;
     const humidity = wetherDataObj.current.humidity
     const windKPH = wetherDataObj.current.wind_kph;
+    const localTime = wetherDataObj.location.localtime;
 
     cityDiv.textContent = city;
-    timeDateDiv.textContent = new Date();
+    updateDateTime(localTime);
     feelsLikeDiv.textContent = `Feels like ${feelslikeC}°`
     conditionDiv.textContent = condition
     tempDiv.textContent = `${tempC}°`
@@ -33,6 +37,17 @@ async function x() {
 
 x();
 
-function displayController() {
-    
+const submitButton = document.querySelector('form button');
+const inputField = document.querySelector('input');
+
+submitButton.onclick = (e) => {
+    const inputField = document.querySelector('input');
+    x(inputField.value);
+}
+
+window.onkeydown = (e) => {
+    if (e.key == 'Enter') {
+        e.preventDefault();
+        x(inputField.value);
+    }
 }
