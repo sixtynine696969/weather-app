@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    max-height: 100vh;
+}
+
+main {
+    width: 500px;
+}
+
+.current-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    gap: 5px;
+}
+
+.current-data .top {
+    grid-column: span 2;
+}
+
+.current-data .left {
+    display: flex;
+    align-items: center;
+}
+
+.current-data .left .degree {
+    align-self: flex-start;
+}
+
+.current-data .left .temp {
+    font-size: 3rem;
+}
+
+.current-data .right {
+    text-align: right;
+}
