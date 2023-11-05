@@ -27,8 +27,6 @@ async function x(chosenCity='new york') {
     const windKPH = wetherDataObj.current.wind_kph;
     const localTime = wetherDataObj.location.localtime;
 
-
-    console.log(wetherDataObj);
     cityDiv.textContent = city;
     updateDateTime(localTime);
     feelsLikeDiv.textContent = `Feels like ${feelslikeC}°`
