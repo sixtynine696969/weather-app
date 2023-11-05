@@ -13,7 +13,7 @@ async function x() {
     const tempDiv = document.querySelector('.temp');
     const img = document.querySelector('img');
 
-    const wetherDataObj = await getWeatherObj('mogilany');
+    const wetherDataObj = await getWeatherObj('new york');
     const city = wetherDataObj.location.name;
     const condition = wetherDataObj.current.condition.text;
     const conditionIcon = wetherDataObj.current.condition.icon;
@@ -32,3 +32,7 @@ async function x() {
 }
 
 x();
+
+function displayController() {
+    
+}
