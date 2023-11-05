@@ -2,6 +2,8 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+
+    font-family: monospace;
 }
 
 body {
@@ -22,6 +24,15 @@ main {
 
 .current-data .top {
     grid-column: span 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.current-data .top .city {
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 
 .current-data .left {
@@ -34,7 +45,7 @@ main {
 }
 
 .current-data .left .temp {
-    font-size: 3rem;
+    font-size: 4.2rem;
 }
 
 .current-data .right {

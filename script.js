@@ -6,7 +6,14 @@ async function getWeatherObj(city) {
 }
 
 async function x() {
-    const wetherDataObj = await getWeatherObj('london');
+    const cityDiv = document.querySelector('.city')
+    const timeDateDiv = document.querySelector('.timedate')
+    const feelsLikeDiv = document.querySelector('.feels-like-text');
+    const conditionDiv = document.querySelector('.condition-text');
+    const tempDiv = document.querySelector('.temp');
+    const img = document.querySelector('img');
+
+    const wetherDataObj = await getWeatherObj('mogilany');
     const city = wetherDataObj.location.name;
     const condition = wetherDataObj.current.condition.text;
     const conditionIcon = wetherDataObj.current.condition.icon;
@@ -15,12 +22,13 @@ async function x() {
     const UV = wetherDataObj.current.uv;
     const humidity = wetherDataObj.current.humidity
     const windKPH = wetherDataObj.current.wind_kph;
-    console.log(city, condition, conditionIcon);
+
+    cityDiv.textContent = city;
+    timeDateDiv.textContent = new Date();
+    feelsLikeDiv.textContent = `Feels like ${feelslikeC}°`
+    conditionDiv.textContent = condition
+    tempDiv.textContent = `${tempC}°`
+    img.src = `https:${conditionIcon}`
 }
 
-async function penis() {
-    const p = await fetch(`http://api.weatherapi.com/v1/future.json?key=8cae8249f31a48edac8190500230411&q=London&dt=2023-12-03`).then(response => response.json());
-    console.log(p.forecast.forecastday[0].hour);
-}
-
-penis();
+x();
