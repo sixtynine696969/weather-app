@@ -13,7 +13,7 @@ async function updateDateTime(time) {
 const feelsLikeTempSpan = document.querySelector('.feels-like-number');
 const tempNumberSpan = document.querySelector('.temp-number');
 
-async function x(chosenCity='new york') {
+async function x(chosenCity='new york') { // lookup city and display data
     const toggler = document.querySelector('.toggler > input');
     const cityDiv = document.querySelector('.city')
     const conditionDiv = document.querySelector('.condition-text');
@@ -50,13 +50,14 @@ async function x(chosenCity='new york') {
 x();
 const submitButton = document.querySelector('form button');
 const inputField = document.querySelector('input');
+const form = document.querySelector('form')
 
 submitButton.onclick = (e) => {
     const inputField = document.querySelector('input');
     x(inputField.value);
 }
 
-window.onkeydown = (e) => {
+form.onkeydown = (e) => {
     if (e.key == 'Enter') {
         e.preventDefault();
         x(inputField.value);
