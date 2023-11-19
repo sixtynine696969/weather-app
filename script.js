@@ -1,9 +1,17 @@
 const APIKey = '8cae8249f31a48edac8190500230411';
+const IPDataIPKey = 'd9d5b6df69ad7c4f070ec05c3b6c41837c893ebd3dfa6b153740322e';
+
 const toggler = document.querySelector('.toggler > input');
 
 async function getWeatherObj(city) {
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${APIKey}&q=${city}`)
     return await response.json();
+}
+
+async function getClientIP() {
+    const response = await fetch(`https://api.ipdata.co?api-key=${IPDataIPKey}`)
+    const json = await response.json()
+    return json.ip
 }
 
 async function updateDateTime(time) {
@@ -13,13 +21,19 @@ async function updateDateTime(time) {
 const feelsLikeTempSpan = document.querySelector('.feels-like-number');
 const tempNumberSpan = document.querySelector('.temp-number');
 
-async function x(chosenCity='new york') { // lookup city and display data
+async function fillWithData(chosenCity) { // lookup city and display data
     const toggler = document.querySelector('.toggler > input');
     const cityDiv = document.querySelector('.city')
     const conditionDiv = document.querySelector('.condition-text');
     const img = document.querySelector('img');
+    let wetherDataObj;
 
-    const wetherDataObj = await getWeatherObj(chosenCity);
+    if (chosenCity) {
+        wetherDataObj = await getWeatherObj(chosenCity)
+    } else {
+        wetherDataObj = await getWeatherObj(await getClientIP());
+    }
+    
     const city = wetherDataObj.location.name;
     const condition = wetherDataObj.current.condition.text;
     const conditionIcon = wetherDataObj.current.condition.icon;
@@ -47,20 +61,20 @@ async function x(chosenCity='new york') { // lookup city and display data
     img.src = `https:${conditionIcon}`
 }
 
-x();
+fillWithData();
 const submitButton = document.querySelector('form button');
 const inputField = document.querySelector('input');
 const form = document.querySelector('form')
 
 submitButton.onclick = (e) => {
     const inputField = document.querySelector('input');
-    x(inputField.value);
+    fillWithData(inputField.value);
 }
 
 form.onkeydown = (e) => {
     if (e.key == 'Enter') {
         e.preventDefault();
-        x(inputField.value);
+        fillWithData(inputField.value);
     }
 }
 
