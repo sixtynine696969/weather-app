@@ -55,7 +55,7 @@ async function fillWithData(chosenCity) { // lookup city and display data
 
     cityDiv.textContent = city;
     updateDateTime(localTime);
-    if (toggler.checked) {
+    if (currentToggler.checked) {
         feelsLikeTempSpan.textContent = feelsLikeFehr;
         tempNumberSpan.textContent = fehr;
     } else {
