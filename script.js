@@ -36,15 +36,16 @@ async function fillWithData(chosenCity) { // lookup city and display data
 
     if (chosenCity) {
         wetherDataObj = await getWeatherObj(chosenCity);
-        // if ('error' in wetherDataObj) {
-        //     errorBox.style.display = 'block';
-        // } else {
-        //     errorBox.style.display = 'none';
-        // }
-        errorBox.style.display = ('error' in wetherDataObj) ? 'block' : 'none';
     } else {
         wetherDataObj = await getWeatherObj(await getClientIP());
     }
+    
+    // if ('error' in wetherDataObj) {
+    //     errorBox.style.display = 'block';
+    // } else {
+    //     errorBox.style.display = 'none';
+    // }
+    errorBox.style.display = ('error' in wetherDataObj) ? 'block' : 'none';
     
     const city = wetherDataObj.location.name;
     const condition = wetherDataObj.current.condition.text;
