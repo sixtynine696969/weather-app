@@ -3,6 +3,7 @@ const IPDataIPKey = 'd9d5b6df69ad7c4f070ec05c3b6c41837c893ebd3dfa6b153740322e';
 
 const toggler = document.querySelector('.toggler > input');
 const errorBox = document.querySelector('.error')
+const faviconElem = document.querySelector('head link[rel="icon"]')
 
 async function getWeatherObj(city) {
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${APIKey}&q=${city}`)
@@ -72,6 +73,8 @@ async function fillWithData(chosenCity) { // lookup city and display data
     }
     conditionDiv.textContent = condition;
     img.src = `https:${conditionIcon}`
+
+    faviconElem.setAttribute('href', `https:${conditionIcon}`);
 }
 
 fillWithData();
